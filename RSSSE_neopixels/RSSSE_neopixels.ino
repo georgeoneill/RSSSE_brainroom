@@ -12,8 +12,10 @@ int id = 0;
 int R = 0;
 int G = 0;
 int B = 0;
-int n = 2;
-Adafruit_NeoPixel strip = Adafruit_NeoPixel(5*n, PIN, NEO_GRB + NEO_KHZ400);
+int n_bulbs = 2;
+int led_per_bulb = 5;
+
+Adafruit_NeoPixel strip = Adafruit_NeoPixel(led_per_bub*n_bulbs, PIN, NEO_GRB + NEO_KHZ400);
 
 void setup() {
   Serial.begin(9600);
@@ -45,11 +47,11 @@ void serialEvent(){
   
   if ((id) > 0){
 //    strip.setPixelColor(id-1, R, G, B);
- for (int i = (id-1)*5; i < 5*id; i++){
+ for (int i = (id-1)*led_per_bulb; i < led_per_bulb*id; i++){
         strip.setPixelColor(i, R, G, B);
       }
   } else {
-      for (int i = 0; i < 5*n; i++){
+      for (int i = 0; i < led_per_bulb*n; i++){
         strip.setPixelColor(i, R, G, B);
       }
   }
