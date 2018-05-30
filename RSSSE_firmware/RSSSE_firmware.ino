@@ -4,8 +4,7 @@
 
 uint16_t color = 0;
 const int color_length = 3;
-const int id_length = 1;
-char iI[id_length + 1];
+char iI[color_length + 1];
 char iR[color_length + 1];
 char iG[color_length + 1];
 char iB[color_length + 1];
@@ -37,7 +36,7 @@ void setup() {
 void serialEvent() {
 
   while (Serial.available()) {
-    byte size = Serial.readBytes(iI, id_length);
+    byte size = Serial.readBytes(iI, color_length);
     iI[size] = 0;
     size = Serial.readBytes(iR, color_length);
     iR[size] = 0;
@@ -60,11 +59,11 @@ void serialEvent() {
     go_led(id, R, G, B);
   } else {
     for (int i = 1; i < n_bulbs + 1; i++) {
-      go_led(id, R, G, B);
+      go_led(i, R, G, B);
     }
   }
 
-  delay(5);
+delay(1);
 }
 
 void go_led(int i, uint16_t r, uint16_t g, uint16_t b) {
