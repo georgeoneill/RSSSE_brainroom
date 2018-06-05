@@ -15,11 +15,11 @@ b = cos(2*pi*t - (4*pi)/3);
  for meh = 1:10
     for ii = 1:3000
 %         meh = rand(1,3);
-        R = sprintf('%03d',round(255*r(ii)^2));
-        G = sprintf('%03d',round(255*g(ii)^2));
-        B = sprintf('%03d',round(255*b(ii)^2));
+        R = sprintf('%03d',round(100*r(ii)^2));
+        G = sprintf('%03d',round(100*g(ii)^2));
+        B = sprintf('%03d',round(100*b(ii)^2));
         fprintf(ard,'%s',['0' R G B])
-         pause(0.01)
+%          pause(0.0)
 % 
     end
 
@@ -30,3 +30,6 @@ for ii = 1:11000
     id =  sprintf('%03d',round(255*rand),round(255*rand),round(255*rand));
     fprintf(ard,'%s',[id])
 end
+
+%%
+delete(instrfindall)
