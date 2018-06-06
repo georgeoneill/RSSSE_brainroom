@@ -12,7 +12,7 @@ int id = 0;
 uint16_t R = 0;
 uint16_t G = 0;
 uint16_t B = 0;
-int n_bulbs = 1;
+int n_bulbs = 4;
 
 Adafruit_PWMServoDriver pwm = Adafruit_PWMServoDriver();
 
