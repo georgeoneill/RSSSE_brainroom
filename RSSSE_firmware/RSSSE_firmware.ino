@@ -20,10 +20,10 @@ Adafruit_PWMServoDriver pwm1 = Adafruit_PWMServoDriver(0x41);
 void setup() {
   // pwm init
   pwm.begin();
-  pwm.setPWMFreq(200);
+  pwm.setPWMFreq(300);
   pwm1.begin();
-  pwm1.setPWMFreq(200);
-  Wire.setClock(100000);
+  pwm1.setPWMFreq(300);
+  Wire.setClock(400000);
   // set all LEDs to off
   for (int i = 1; i < n_bulbs + 1; i++) {
     go_led(i, 0, 0, 0);
