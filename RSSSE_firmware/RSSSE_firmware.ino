@@ -12,14 +12,17 @@ int id = 0;
 uint16_t R = 0;
 uint16_t G = 0;
 uint16_t B = 0;
-int n_bulbs = 4;
+int n_bulbs = 8;
 
 Adafruit_PWMServoDriver pwm = Adafruit_PWMServoDriver();
+Adafruit_PWMServoDriver pwm1 = Adafruit_PWMServoDriver(0x41);
 
 void setup() {
   // pwm init
   pwm.begin();
   pwm.setPWMFreq(200);
+  pwm1.begin();
+  pwm1.setPWMFreq(200);
   Wire.setClock(100000);
   // set all LEDs to off
   for (int i = 1; i < n_bulbs + 1; i++) {
@@ -68,6 +71,7 @@ void serialEvent() {
 
 void go_led(int i, uint16_t r, uint16_t g, uint16_t b) {
 
+  if (i <=5){
   // first work out pwm channel is r, (g an b channels are +1 and +2)
   int r_chan = (i - 1) * 4;
   int g_chan = r_chan + 1;
@@ -91,7 +95,31 @@ void go_led(int i, uint16_t r, uint16_t g, uint16_t b) {
   } else {
     pwm.setPWM(b_chan, 0, b);
   }
+  } else{
+    i = i-4;
+      int r_chan = (i - 1) * 4;
+  int g_chan = r_chan + 1;
+  int b_chan = r_chan + 2;
 
+  // showtime!
+  if (r == 0) {
+    pwm1.setPWM(r_chan, 0, 4096);
+  } else {
+    pwm1.setPWM(r_chan, 0, r);
+  }
+
+  if (g == 0) {
+    pwm1.setPWM(g_chan, 0, 4096);
+  } else {
+    pwm1.setPWM(g_chan, 0, g);
+  }
+
+  if (b == 0) {
+    pwm1.setPWM(b_chan, 0, 4096);
+  } else {
+    pwm1.setPWM(b_chan, 0, b);
+  }
+  }
 
 }
 
